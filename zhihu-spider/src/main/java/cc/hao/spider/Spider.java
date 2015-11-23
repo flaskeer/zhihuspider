@@ -57,16 +57,15 @@ public class Spider {
 		return results;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		String url = "http://www.zhihu.com/explore/recommendations";
 		String content = Spider.getSourceCode(url);
 		ArrayList<ZhihuEntity> results = Spider.getRecommendations(content);
+		StringBuilder sb = new StringBuilder();
 		for (ZhihuEntity zhihuEntity : results) {
-			try {
-				FileUtils.writeStringToFile(new File("F://zhihu/recommand.txt"), zhihuEntity.toString(), true);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			sb.append(zhihuEntity.writeToString());
+			FileUtils.writeStringToFile(new File("F://zhihu/recommand.txt"), sb.toString(), true);
+			
 		}
 	}
 

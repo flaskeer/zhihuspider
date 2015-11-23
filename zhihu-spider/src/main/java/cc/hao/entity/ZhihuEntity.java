@@ -35,7 +35,7 @@ public class ZhihuEntity {
 			}
 			Elements ansElem = document.getElementsByClass("zm-item-answer");
 			for (Element item : ansElem) {
-				Element textElem = item.getElementsByClass("zm-item-rich-text").first();
+				Element textElem = item.getElementsByClass("zm-editable-content").first();
 				answers.add(textElem.text());
 			}
 		}
